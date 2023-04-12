@@ -49,9 +49,9 @@ function App() {
                       <div key={project.project_name} className='row'>
                         <h5 className='country-header'>Destination: {country.name}</h5>
                         <div className='row grid-header d-flex'>
-                          <div id='destination' className='col-3 d-flex'>Project</div>
-                          <div id='fee' className='col-3 d-flex'>Duration</div>
-                          <div id='fee' className='col-3 d-flex'>Value</div>
+                          <div id='project' className='col-3 d-flex'>Project</div>
+                          <div id='duration' className='col-3 d-flex'>Duration</div>
+                          <div id='value' className='col-3 d-flex'>Value</div>
                           <div id='disclaimer' className='col-3 d-flex'>Disclaimer</div>
                         </div>
                         <div className='row pb-5 pt-2'>
