@@ -84,17 +84,14 @@
   display: block;
 }
 
-/* Track */
 .grid::-webkit-scrollbar-track {
   background: #f9feff;
 }
 
-/* Handle */
 .grid::-webkit-scrollbar-thumb {
   background: #e3f5f8;
 }
 
-/* Handle on hover */
 .grid::-webkit-scrollbar-thumb:hover {
   background: #fff;
 }
@@ -109,10 +106,6 @@
   padding: 10px 15px;
   border-bottom: 1px solid #dddddd;
   text-align: left;
-}
-
-.grid-row:nth-child(odd) {
-  background-color: #f3fbfd;
 }
 
 .disclaimer {
@@ -151,20 +144,5 @@
 
   h6 {
     font-size: 14px!important;
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
   }
 }

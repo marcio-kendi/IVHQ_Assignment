@@ -21,8 +21,6 @@ function App() {
     getUsers();
   }, []);
   
-  console.log(countries);
-
   return (
     <div className='App'>
       <div className='App-header'>    
