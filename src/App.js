@@ -1,14 +1,12 @@
 import './App.css';
-// import data from 'https://api.jsonserve.com/nx4it9';
-import data from './ivhq-fed-test.json';
 import { useState, useEffect } from 'react';
-
 function App() {
-  const [users, setUsers] = useState();
+  const [countries, setCountries] = useState();
+  const [exchange, setExchange] = useState(true);
 
   useEffect(() => {
     async function getUsers() {
-      const response = await fetch('https://gist.githubusercontent.com/xavierperera/4865fcf80fe93fcefac0b846bad0e98b/raw/aa40a9305697c8b2f1a9cbb8a16a3ca44362734f/ivhq-fed-test.json', {
+      const response = await fetch('/ivhq-fed-test.json', {
         method: 'GET',
         headers: {
           accept: 'application/json',
@@ -17,55 +15,64 @@ function App() {
 
       const data = await response.json();
 
-      setUsers(data);
+      setCountries(data);
     }
 
-    getUsers(users);
+    getUsers();
   }, []);
   
+  console.log(countries);
+
   return (
     <div className='App'>
       <div className='App-header'>    
-        <div id='header' className='container-fluid header--padding header--border header--border'>
+        <header id='header' className='container-fluid header--padding header--border header--border'>
           <div className='container'>
               <div className='col-12'>
                   <span className='header--title'>IVHQ Frontend Technical Test</span>
               </div>
           </div>
-        </div>
+        </header>
       </div>
       <div id='main' className='container-fluid main'>
-          <div className='container'>
-            <div className='col-12 text-center pb-3'>Grid</div>
+          <div className='container d-flex justify-content-center pb-3 pt-5'>
+            <div className='col-lg-9 col-12 d-flex justify-content-end'>
+              <div class="exchange-button" id="exchange" onClick={() => setExchange(!exchange)}>Change Currency</div>
+            </div>
           </div>
           <div className='container d-flex justify-content-center'>
-            <div className='col-6 grid text-center'>
-                <div className='row'>
-                  <div className='col-4 text-center'>Country</div>
-                  <div className='col-4 text-center'>Country code</div>
-                  <div className='col-4 text-center'>Value</div>
-                </div>
-                {data.map((data, key) => {
-                  return (
-                  <div>
-                    {data.projects.map((fee, index) => {
-                      return (
-                        <div key={index}>
-                          {fee.fees.map((cost, index) => {
-                            return (
-                              <div className='row'>
-                                <div className='col-4 text-center' key={key} id={data.id}>{data.name}</div>
-                                <div className='col-4 text-center' key={key}>{data.country_code}</div>
-                                <div className='col-4 text-center' key={index}>{cost.costs.us}</div>
-                              </div>
-                            );
-                          })}
+            <div className='col-lg-9 col-12 grid'>
+              <div className='grid-row'>
+                {countries?.map((country) => 
+                (<div className='grid-row' key={country.id}>                  
+                    {country.projects.map((project) => (
+                      <div key={project.project_name} className='row'>
+                        <h5 className='country-header'>Destination: {country.name}</h5>
+                        <div className='row grid-header d-flex'>
+                          <div id='destination' className='col-3 d-flex'>Project</div>
+                          <div id='fee' className='col-3 d-flex'>Duration</div>
+                          <div id='fee' className='col-3 d-flex'>Value</div>
+                          <div id='disclaimer' className='col-3 d-flex'>Disclaimer</div>
                         </div>
-                      );
-                    })}
-                  </div>
-                  );
-                })}
+                        <div className='row pb-5 pt-2'>
+                          <div className='col-3 d-flex row'>
+                            <h6>{project.project_name}</h6>
+                          </div>
+                          <div className='col-6 container'>
+                          {project.fees.map((fee) => (
+                            <div className='row'>
+                              <div className='col-6 d-flex padding-left'>{fee.duration}</div>
+                              <div className='col-6 d-flex padding-left'>{exchange ? fee.costs.us + ' USD' : fee.costs.gb + ' GB'}</div>
+                            </div>
+                            ))}
+                          </div>
+                          <div className='col-3 d-flex disclaimer'>{project.fees_disclaimer}</div>
+                        </div>
+                      </div>
+                    ))}
+                </div>)
+                )}
+              </div>
             </div>
           </div>
       </div>

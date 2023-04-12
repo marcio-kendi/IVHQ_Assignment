@@ -34,19 +34,28 @@
   font-size: calc(15px + 2vmin);
 }
 
+.table {
+  margin: 10px;
+}
+
+.table th {
+  border-bottom: 2px solid #dddddd;
+}
+
 .main {
-  display: flex;
   position: absolute;
+  top: 0;
+  display: flex;
   justify-content: center;
   flex-direction: column;
-  top: 0;
   height: 100%;
-  background-color: #F3F9FA;
   min-height: 100vh;
+  background-color: #F3F9FA;
 }
 
 .App {
   text-align: center;
+  background-color: #F3F9FA;
 }
 
 .App-logo {
@@ -54,10 +63,95 @@
   pointer-events: none;
 }
 
+.country-header {
+  padding-top: 30px;
+}
+
 .grid {
-  border: 1px solid #E1E1E1;
-  border-radius: 5px;
-  padding: 10px;
+  height: 60vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.grid::-webkit-scrollbar {
+  width: 5px;
+  padding-left: 10px;
+}
+
+.grid:hover::-webkit-scrollbar {
+  width: 5px;
+  padding-left: 10px;
+  display: block;
+}
+
+/* Track */
+.grid::-webkit-scrollbar-track {
+  background: #f9feff;
+}
+
+/* Handle */
+.grid::-webkit-scrollbar-thumb {
+  background: #e3f5f8;
+}
+
+/* Handle on hover */
+.grid::-webkit-scrollbar-thumb:hover {
+  background: #fff;
+}
+
+.grid-header {
+  font-weight: 600;
+  /* border-bottom: 2px solid #dddddd; */
+  padding: 10px 12px;
+}
+
+.grid-row {
+  padding: 10px 15px;
+  border-bottom: 1px solid #dddddd;
+  text-align: left;
+}
+
+.grid-row:nth-child(odd) {
+  background-color: #f3fbfd;
+}
+
+.disclaimer {
+  text-align: left;
+  font-size: 14px;
+  line-height: 1.1;
+}
+
+.padding-left {
+  padding-left: 25px!important;
+}
+
+.exchange-button{
+  width: 130px;
+  padding: 5px;
+  color: #ffffff;
+  background: #5aa570;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 12px;
+  text-align: center;
+}
+
+@media only screen and (max-width: 728px) {
+  .grid-row {
+    font-size: 12px;
+  }
+  .disclaimer {
+    font-size: 10px;
+    line-height: 1;
+  }
+
+  h5 {
+    font-size: 16px!important;
+  }
+
+  h6 {
+    font-size: 14px!important;
+  }
 }
 
 @media (prefers-reduced-motion: no-preference) {
